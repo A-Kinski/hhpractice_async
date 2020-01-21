@@ -7,7 +7,7 @@ async def c10k(request):
     async with ClientSession() as session:
         async with session.get('https://en.wikipedia.org/wiki/C10k_problem', allow_redirects=True) as response:
             html = await response.text()
-            return web.Response(text=html)
+            return web.Response(text=html, headers={'Content-Type': 'text/html'})
 
 handlers = [
     web.get('/', hello),
